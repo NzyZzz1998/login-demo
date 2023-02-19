@@ -5,6 +5,15 @@ public class User {
     private Integer id;
     private String username;
     private String password;
+    private int status;
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
 
     public Integer getId() {
         return id;
@@ -36,6 +45,7 @@ public class User {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", status=" + status +
                 '}';
     }
 }
