@@ -1,0 +1,32 @@
+package com.shixi.web;
+
+
+import com.shixi.pojo.Product;
+import com.shixi.service.ProductService;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+@WebServlet("/deleteByIdServlet")
+public class DeleteByIdServlet extends HttpServlet {
+    private ProductService service = new ProductService();
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        String id = request.getParameter("id");
+        Product product = service.selectById(Integer.parseInt(id));
+        request.setAttribute("product",product);
+
+        request.getRequestDispatcher("/delete.jsp").forward(request,response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        this.doGet(request, response);
+    }
+}

@@ -49,7 +49,7 @@
 
 <script>
     document.getElementById("changeImg").onclick = function () {
-        document.getElementById("checkCodeImg").src = "/brand-demo/checkCodeServlet?"+new Date().getMilliseconds();
+        document.getElementById("checkCodeImg").src = "/product-demo/checkCodeServlet?"+new Date().getMilliseconds();
     }
 
 </script>
