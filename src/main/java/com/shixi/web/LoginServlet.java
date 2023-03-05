@@ -1,17 +1,12 @@
 package com.shixi.web;
 
-import com.shixi.mapper.UserMapper;
 import com.shixi.pojo.User;
 import com.shixi.service.UserService;
-import com.shixi.util.SqlSessionFactoryUtils;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
 
-import javax.servlet.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 @WebServlet("/loginServlet")
 public class LoginServlet extends HttpServlet {
@@ -41,8 +36,18 @@ public class LoginServlet extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("user",user);
 
-            String contextPath = request.getContextPath();
-            request.getRequestDispatcher("/success.jsp").forward(request,response);
+            if (user.getStatus() == 1){
+                String contextPath = request.getContextPath();
+                request.getRequestDispatcher("/success1.jsp").forward(request,response);
+            }else
+            {
+                String contextPath = request.getContextPath();
+                request.getRequestDispatcher("/success0.jsp").forward(request,response);
+            }
+
+
+
+
         }else {
             // 登录失败,
             request.setAttribute("login_msg","用户名或密码错误");
